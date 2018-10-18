@@ -37,7 +37,8 @@ def parse(
                                 url_info[1] = url_info[1][4:]
                         list_url.append(url_info[1])
                         if slow_queries:
-                            solution_dict[url_info[1]] += [0,0]
+                            if len(solution_dict[url_info[1]]) == 0:
+                                solution_dict[url_info[1]] += [0,0]
                             solution_dict[url_info[1]][0] += int(log_parse[6])
                             solution_dict[url_info[1]][1] += 1
 
@@ -102,3 +103,4 @@ def is_valid(url, qualifying=None):
     token = urlparse(url)
     return all([getattr(token, qualifying_attr)
                 for qualifying_attr in qualifying])
+
